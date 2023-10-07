@@ -1,4 +1,4 @@
-import { useContext, useState } from "react"
+import { useContext } from "react"
 import { IProduct } from '../models/Product';
 import { IFilter } from "../models/Filters";
 import { FiltersContext } from "../context/filters";
@@ -8,11 +8,7 @@ export const useFilters = (): {
   filterProducts: (products: IProduct[]) => IProduct[];
   setFilters: React.Dispatch<React.SetStateAction<IFilter>>
 } => {
-  const [filters, setFilters] = useState<IFilter>({
-    category: 'all',
-    minPrice: 0
-  })
-  // const filters = useContext(FiltersContext)
+  const { filters, setFilters } = useContext(FiltersContext)
 
   const filterProducts = (products: IProduct[]): IProduct[] => {
     return products?.filter(product => {

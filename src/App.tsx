@@ -1,19 +1,20 @@
-import { useState } from "react";
-import { Footer, Header, ListProducts } from "./components";
 import data from './mocks/products.json'
+import { Footer, Header, ListProducts } from "./components";
 import { useFilters } from './hooks/useFilters'
+import { Cart } from './components/cart/Cart';
+import { CartProvider } from './context/cart';
 
 function App() {
   const { filterProducts } = useFilters()
-  const [products] = useState(data.products)
-  const filteredProducts = filterProducts(products)
+  const filteredProducts = filterProducts(data.products)
 
   return (
-    <div>
+    <CartProvider>
       <Header />
+      <Cart />
       <ListProducts products={filteredProducts} />
       <Footer />
-    </div>
+    </CartProvider>
   );
 }
 
